@@ -1,10 +1,10 @@
-var os = require('os'); //importowanie modułu 'os'
+var os = require('os');
+var uptimeInfo = require('./uptimeInfo');
 
 function getOSinfo() {
 		var type = os.type(),
 			release = os.release(),
 			cpu = os.cpus()[0].model,
-			uptime = os.uptime(),
 			userInfo = os.userInfo();
 
 		if (type === 'Darwin') {
@@ -17,9 +17,9 @@ function getOSinfo() {
 		console.log('System: ', type);
 		console.log('Release: ', release);
 		console.log('CPU model: ', cpu);
-		console.log('Uptime: ~', (uptime / 60).toFixed(0), 'min');
+		uptimeInfo.format();
 		console.log('User name: ', userInfo.username);
 		console.log('Home dir: ', userInfo.homedir);
 	}
 
-	exports.print = getOSinfo;
+exports.print = getOSinfo;
